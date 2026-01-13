@@ -1,0 +1,14 @@
+# Never publish runtime state
+telemetry/
+log/
+sessions/
+shell_snapshots/
+auth.json
+config.toml
+history.jsonl
+version.json
+
+# OS/editor noise
+.DS_Store
+.idea/
+.vscode/
