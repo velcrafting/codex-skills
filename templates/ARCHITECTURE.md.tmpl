@@ -1,0 +1,51 @@
+# ARCHITECTURE.md
+
+## Purpose
+High-level description of the system’s shape, boundaries, and responsibilities.
+
+This document explains **how to think about the system**, not line-by-line behavior.
+
+---
+
+## System overview
+<One or two paragraphs describing what this system is and what it is not.>
+
+---
+
+## Major components
+Describe the main subsystems and their responsibilities.
+
+Example:
+- Backend services
+- Frontend/UI
+- Data/storage
+- External integrations
+
+---
+
+## Boundaries and responsibilities
+- Each component owns its domain.
+- Cross-boundary logic should be explicit and minimal.
+- Avoid “god modules” that accumulate unrelated behavior.
+
+---
+
+## Data flow (conceptual)
+Describe how data moves through the system at a high level.
+
+---
+
+## Invariants
+List non-negotiable truths the system must maintain.
+
+Examples:
+- Data consistency rules
+- Safety or security constraints
+- Operational guarantees
+
+---
+
+## What this document is not
+- Not a detailed design spec
+- Not an implementation checklist
+- Not a substitute for tests

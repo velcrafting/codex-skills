@@ -1,0 +1,90 @@
+# {{REPO_NAME}}
+
+## Executive summary
+{{ONE_SENTENCE_MISSION}}
+
+---
+
+## What’s in this repo
+- **Primary stack:** {{STACK_SHAPE}}
+- **Risk posture:** {{RISK_POSTURE}}
+- **Change discipline:** {{CHANGE_DISCIPLINE}}
+
+This repository follows explicit governance and documentation discipline to prevent silent drift and assumption creep.
+
+---
+
+## Repo map (high-level)
+{{TREE_HIGHLIGHTS}}
+
+For a full structural snapshot, see `Tree.txt`.
+
+---
+
+## How to run
+
+### Prerequisites
+{{PREREQS}}
+
+### Backend (if applicable)
+```bash
+{{BACKEND_SETUP}}
+{{BACKEND_RUN}}
+```
+
+### Frontend (if applicable)
+```bash
+{{FRONTEND_SETUP}}
+{{FRONTEND_RUN}}
+```
+
+---
+
+## How to test
+
+### Backend (If applicable)
+```bash
+{{BACKEND_TESTS}}
+```
+### Frontend (If applicable)
+```bash
+{{FRONTEND_TESTS}}
+```
+
+If tests cannot be run locally, document why and provide an alternative validation method.
+
+---
+
+## Common workflows
+- **Planning:** invoke `$create-plan` when asking for sequencing or implementation approach.
+- **Clarification:** invoke `$ask-questions-if-underspecified` when requirements are unclear.
+- **Specification:** invoke `$spec-sculptor` to turn ideas into a concrete spec.
+- **Decisions:** invoke `$decision-capture` for non-trivial tradeoffs.
+- **Governance:** invoke `$governance-sync` after multi-file or structural changes.
+
+---
+
+## Safety and discipline
+- **Secrets:** never commit secrets. Use `.env` files or a secret manager.
+- **Scope control:** avoid drive-by refactors unless explicitly requested.
+- **Risk:** default to risk-off behavior when uncertainty is high.
+
+---
+
+## Docs and governance
+This repo uses the following governance artifacts:
+
+- **AGENTS.md** – operating rules and agent posture
+- **ARCHITECTURE.md** – system shape and boundaries
+- **CALIBRATION.md** – quality bar and definition of done
+- **ROADMAP.md** – execution ledger and milestones
+- **DECISIONS.md** – append-only decision log
+- **REVIEW_QUEUE.md** – items needing ratification or revisit
+- **SUGGESTIONS.md** – ideas and concerns (no execution)
+- **Tree.txt** – structural map of the repository
+- **.codex/SKILLS.md** – skill index and usage guidance
+
+---
+
+## License
+{{LICENSE_NOTE}}

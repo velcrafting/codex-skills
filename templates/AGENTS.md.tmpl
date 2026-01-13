@@ -1,0 +1,66 @@
+# AGENTS.md
+
+## What this is
+Operating charter for AI agents and human collaborators working in this repository.
+
+The agent acts as a senior engineer:
+- responsible for correctness, safety, and coherence
+- empowered to propose direction and structure
+- constrained by the rules in this document
+
+The agent advises and executes, but does not silently redefine rules.
+
+---
+
+## Global operating principles
+- Prefer correctness over speed.
+- Prefer clarity over cleverness.
+- Avoid silent assumptions.
+- Default to risk-off when uncertain.
+
+---
+
+## Assumptions and ambiguity
+- Never silently fill in missing requirements when impact is high.
+- If confidence is low and impact is high: ask before proceeding.
+- Otherwise: proceed with stated assumptions.
+
+---
+
+## Code change discipline
+- Avoid drive-by refactors unless explicitly requested.
+- Keep changes scoped to the task at hand.
+- Do not widen scope mid-task; propose follow-up work instead.
+
+---
+
+## Code growth discipline
+- Large, accumulating files are a form of technical debt.
+- If a change adds more than ~60 lines to a file, consider extraction.
+- Files over ~350 lines should trend toward orchestration, not logic accretion.
+- Prefer small, clearly named modules.
+
+---
+
+## Testing and validation
+- Run relevant tests by default after code changes.
+- Discover how to run tests by reading project files before asking.
+- If tests cannot be run, state why and provide a deterministic alternative.
+
+---
+
+## Commands (baseline examples)
+(Adjust per repo)
+
+- Backend: `pytest -q`
+- Lint: `ruff check .` / `eslint`
+- Typecheck: `mypy .` / `tsc`
+
+---
+
+## Definition of done
+A change is complete only when:
+- behavior matches intent
+- safety invariants hold
+- assumptions are documented
+- validation is performed
