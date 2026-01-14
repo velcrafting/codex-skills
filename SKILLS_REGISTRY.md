@@ -12,8 +12,9 @@ Skills are grouped by responsibility boundary.
 - api (optional): request/response contracts and client wiring (no business rules)
 
 ## How to choose a skill
-Pick the smallest skill that can produce a verifiable artifact.
-If a task spans layers, invoke multiple skills and log each.
+- Pick the smallest skill that can produce a verifiable artifact.
+- If a task spans layers, invoke multiple skills and log each.
+- Prefer repo-native skills first; use vercel/* skills as standards-based review passes or refactor guidance.
 
 ## Skill index
 A quick map of what exists and what it’s for (one-line descriptions only).
@@ -42,6 +43,8 @@ For full contracts, see each skill’s `SKILL.md`.
 - frontend/form-validation: Add input validation rules and UX patterns for forms.
 - frontend/frontend-test-additions: Add or extend UI tests to cover intended behavior.
 - frontend/ui-refactor-extract: Refactor UI code without behavior change (extract/rename/reorganize).
+- vercel/react-best-practices: Apply Vercel’s React and Next.js performance rules (review + refactor guidance).
+- vercel/web-design-guidelines: Audit UI against web interface best practices (a11y, UX, performance).
 
 ### backend
 - backend/endpoint-scaffold: Create a validated, authorized endpoint with error mapping and tests.
@@ -92,6 +95,8 @@ Checks: migration up, tests, typecheck
 - frontend/data-fetching-integration
 - frontend/state-modeling
 - frontend/a11y-semantics-pass
+- vercel/react-best-practices (perf pass)
+- vercel/web-design-guidelines (UI audit)
 Checks: typecheck, lint, basic UI state coverage
 
 ### Refactor existing UI without behavior change
