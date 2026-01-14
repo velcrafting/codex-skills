@@ -35,7 +35,7 @@ For full contracts, see each skill’s `SKILL.md`.
 
 ### frontend
 - frontend/component-scaffold: Add a new component following repo conventions and exports.
-- frontend/data-fetching-integration: Connect UI to data source with typed calls and UI states.
+- frontend/data-fetching-integration: Connect UI to data source with typed calls, UI states, and caching rules.
 - frontend/state-modeling: Define client state shape and transitions for non-trivial flows.
 - frontend/a11y-semantics-pass: Improve semantics and accessibility coverage for UI changes.
 - frontend/performance-pass-ui: Identify and reduce avoidable UI performance regressions.
@@ -62,6 +62,8 @@ For full contracts, see each skill’s `SKILL.md`.
 
 ### api (optional)
 - api/contract-update: Update request/response contracts and client wiring (no business rules).
+- api/client-generation: Generate or update typed API clients from canonical contracts.
+- api/compatibility-check: Assess whether an API change is backward-compatible or breaking.
 
 ## Decision guide
 
@@ -69,39 +71,59 @@ For full contracts, see each skill’s `SKILL.md`.
 - backend/endpoint-scaffold
 - shared/error-taxonomy
 - shared/schema-types
-- api/contract-update (if used)  
+- api/contract-update (if used)
 Checks: unit or integration tests, typecheck, lint
+
+### Make a breaking API change
+- api/compatibility-check
+- api/contract-update
+- api/client-generation (if clients are generated)
+- meta/decision-capture (if the break is non-trivial)
+Checks: contract validation, consumer typecheck, versioning or migration notes
 
 ### Add a new DB column or table
 - backend/persistence-layer-change
 - backend/domain-logic-module (if invariants change)
-- backend/observability-audit (if audit needed)  
+- backend/observability-audit (if audit needed)
 Checks: migration up, tests, typecheck
 
 ### Add a new UI screen backed by API data
 - frontend/component-scaffold
 - frontend/data-fetching-integration
 - frontend/state-modeling
-- frontend/a11y-semantics-pass  
+- frontend/a11y-semantics-pass
 Checks: typecheck, lint, basic UI state coverage
 
 ### Refactor existing UI without behavior change
 - frontend/ui-refactor-extract
-- frontend/frontend-test-additions  
+- frontend/frontend-test-additions
 Checks: tests, typecheck
 
 ### External API integration
 - backend/integration-adapter
 - backend/observability-audit
-- shared/error-taxonomy  
+- shared/error-taxonomy
 Checks: contract tests or mocks, timeouts, retry policy
 
+### Add a background job / scheduled worker
+- backend/job-worker-orchestration
+- backend/observability-audit
+- backend/backend-test-additions
+Checks: idempotency proven, retries bounded, logs/metrics present, tests cover retry + terminal failure
+
+### Change authorization rules for a protected action
+- backend/authz-policy
+- shared/error-taxonomy (if deny shapes/codes change)
+- backend/backend-test-additions
+- backend/observability-audit (if action is sensitive)
+Checks: fail-closed enforced, allow/deny tests, no sensitive leakage in deny responses
+
 ### Change cross-boundary architecture or core system structure
-- system/system-contract-map  
+- system/system-contract-map
 Checks: diagrams updated under `docs/diagrams/system`, invariants updated, sequences reflect current flow
 
 ### Change behavior of a component or service with branching or async flow
-- system/state-machine-mapper  
+- system/state-machine-mapper *(especially for retries, polling, job orchestration, staged authz, or multi-step workflows)*
 Checks: colocated `*.state-machine.md` updated, transition table covers all code paths, error and retry paths modeled
 
 ## Diagram artifacts
@@ -117,9 +139,9 @@ Every skill must define:
 
 ## Telemetry
 All skill invocations must append a record to:
-- repo: `.codex/telemetry/skills.telemetry.jsonl`  
+- repo: `.codex/telemetry/skills.telemetry.jsonl`
 Optionally also append to:
-- global: `~/.codex/telemetry/skills.telemetry.jsonl`  
+- global: `~/.codex/telemetry/skills.telemetry.jsonl`
 See `SKILLS_TELEMETRY.md` for schema.
 
 Note: The canonical, publishable Codex distribution lives in `~/.codex/publish/` and is generated via `scripts/project_ops/publish_sync.sh`.
