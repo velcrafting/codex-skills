@@ -10,6 +10,7 @@ Skills are grouped by responsibility boundary.
 - backend: domain rules, persistence, integrations, jobs, observability
 - shared: primitives and contracts only (no side effects)
 - api (optional): request/response contracts and client wiring (no business rules)
+- prediction: prediction-market discovery, adapters, and analysis workflows (Kalshi/Polymarket)
 
 ## How to choose a skill
 - Pick the smallest skill that can produce a verifiable artifact.
@@ -56,6 +57,10 @@ For full contracts, see each skill’s `SKILL.md`.
 - backend/backend-test-additions: Add or extend backend tests for new behavior or regressions.
 - backend/authz-policy: Define and enforce authorization rules for protected actions.
 
+### prediction
+- prediction/kalshi-markets: Read-only Kalshi market data tools (status, markets, market, orderbook, trades, events, event, series_list, series, search).
+- prediction/prediction-arbitrage-scout: Scout candidate price discrepancies between Polymarket and Kalshi using public data (read-only; outputs CSV/MD).
+
 ### shared
 - shared/primitives: Define stable primitives (types, helpers) with no side effects.
 - shared/schema-types: Define shared schemas/types used across layers.
@@ -95,8 +100,8 @@ Checks: migration up, tests, typecheck
 - frontend/data-fetching-integration
 - frontend/state-modeling
 - frontend/a11y-semantics-pass
-- vercel/react-best-practices (perf pass)
-- vercel/web-design-guidelines (UI audit)
+- vercel/react-best-practices
+- vercel/web-design-guidelines
 Checks: typecheck, lint, basic UI state coverage
 
 ### Refactor existing UI without behavior change
@@ -128,7 +133,7 @@ Checks: fail-closed enforced, allow/deny tests, no sensitive leakage in deny res
 Checks: diagrams updated under `docs/diagrams/system`, invariants updated, sequences reflect current flow
 
 ### Change behavior of a component or service with branching or async flow
-- system/state-machine-mapper *(especially for retries, polling, job orchestration, staged authz, or multi-step workflows)*
+- system/state-machine-mapper
 Checks: colocated `*.state-machine.md` updated, transition table covers all code paths, error and retry paths modeled
 
 ## Diagram artifacts
