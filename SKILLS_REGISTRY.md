@@ -11,6 +11,7 @@ Skills are grouped by responsibility boundary.
 - shared: primitives and contracts only (no side effects)
 - api (optional): request/response contracts and client wiring (no business rules)
 - prediction: prediction-market discovery, adapters, and analysis workflows (Kalshi/Polymarket)
+- resend: Resend email tooling, templates, and sending workflows
 
 ## How to choose a skill
 - Pick the smallest skill that can produce a verifiable artifact.
@@ -72,6 +73,11 @@ For full contracts, see each skill’s `SKILL.md`.
 - api/contract-update: Update request/response contracts and client wiring (no business rules).
 - api/client-generation: Generate or update typed API clients from canonical contracts.
 - api/compatibility-check: Assess whether an API change is backward-compatible or breaking.
+
+### resend
+- resend/email-best-practices-main: Guidance and patterns for high-quality, compliant transactional email.
+- resend/react-email: Build and validate React Email templates and rendering workflows.
+- resend/resend-skills-main/send-email: Send email via Resend with safe defaults (dry-run, error handling, logging hygiene).
 
 ## Decision guide
 
